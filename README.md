@@ -17,3 +17,11 @@ localhost:8000/sites/home is the homepage of the sites<br>
 To create a superuseraccount run the command<br>
 manage.py createsuperuser<br>
 This account can be used to login to admin page<br>
+<br>
+Places for html, static images,css,js files should be within<br>
+(app_name)/templates/(app_name)/<br>
+For examples of login page within accounts<br>
+accounts/templates/accounts/login.html<br>
+accounts/templates/accounts/scripts/login.js for javascript<br>
+accounts/templates/accounts/styles/login.css for css<br>
+accounts/templates/accounts/images/login_background.jpg for images<br>
