@@ -9,3 +9,7 @@ Before installing make sure to uninstall the previous version first to avoid con
 After every pull run the following command lines (This will generates all the tables required)<br>
 manage.py makemigrations<br>
 manage.py migrate<br>
+<br>
+To run the server use the command<br>
+manage.py runserver<br>
+localhost:8000/sites/home is the homepage of the sites<br>
