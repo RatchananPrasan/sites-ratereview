@@ -1,6 +1,7 @@
 # sites-ratereview
 Django University Project<br>
 <br>
+Python version 3.6.0<br>
 Install all library in requirements.txt using pip with command<br>
 pip install -r requirements.txt<br>
 make sure to be in the directory of requirements.txt<br>
