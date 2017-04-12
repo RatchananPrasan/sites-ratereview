@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block title %}RateReview{% endblock %} {% block content %}
+<div class="container">
+    {% if error %}
+    <p>{{ error }}</p>
+    {% endif %}
+    <h1>Login</h1>
+    <form method="post" action="{% url 'accounts:login' %}">
+        {% csrf_token %}
+        Username<br>
+        <input type="text" name="username"><br>
+        Password<br>
+        <input type="password" name="password"><br>
+        <button type="submit">Log in</button>
+    </form>
+</div>
+{% endblock %}
