@@ -1,6 +1,6 @@
 # sites-ratereview
-Django University Project<br>
-<br>
+###Django University Project<br>
+<hr>
 Install all library in requirements.txt using pip with command<br>
 pip install -r requirements.txt<br>
 make sure to be in the directory of requirements.txt<br>
