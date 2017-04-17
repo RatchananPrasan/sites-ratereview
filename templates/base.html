@@ -47,9 +47,11 @@
             {% else %}
             <!-- USER NOT LOGGED IN -->
             <div class="nav navbar-nav navbar-right">
-                <a class="btn btn-default navbar-btn" href="{% url 'accounts:login' %}">Sign in</a>
                 <a class="btn btn-default navbar-btn" href="{% url 'accounts:register' %}">Sign up</a>
             </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{% url 'accounts:login' %}">Sign in</a></li>
+            </ul>
             <!-- END USER NOT LOGGED IN -->
             {% endif %}
         </div>

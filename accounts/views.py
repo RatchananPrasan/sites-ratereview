@@ -15,7 +15,7 @@ def accounts_login_view(request):
             login(request, user)
             return redirect('sites:home')
         else:
-            return render(request, 'accounts/login.html', {'error':'Invalid User'})
+            return render(request, 'accounts/login.html', {'error':'Invalid Username or Password'})
         
     return render(request, 'accounts/login.html')
 
