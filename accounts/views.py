@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from .validate import AccountValidator
 
 # Create your views here.
 def accounts_login_view(request):
@@ -15,7 +16,7 @@ def accounts_login_view(request):
             login(request, user)
             return redirect('sites:home')
         else:
-            return render(request, 'accounts/login.html', {'error':'Invalid Username or Password'})
+            return render(request, 'accounts/login.html', {'error':'Invalid Username or Password.'})
         
     return render(request, 'accounts/login.html')
 
@@ -32,16 +33,17 @@ def accounts_register_view(request):
     
     if request.method == "POST":
         username = request.POST['username']
-        password = request.POST['password']
-        if username and password:
-            try:
-                user = User.objects.get(username=username)
-                return render(request, 'accounts/register.html', {'error':'Username already taken'})
-            except User.DoesNotExist:
-                user = User.objects.create_user(username=username, password=password)
-                login(request, user)
-                return redirect('sites:home')
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+        email = request.POST['email']
+        
+        validator = AccountValidator(username, password1, password2, email)
+        
+        if validator.is_valid():
+            user = User.objects.create_user(username=username, password=password1, email=email)
+            login(request, user)
+            return redirect('sites:home')
         else:
-            return render(request, 'accounts/register.html', {'error':'Username and Password cannot be blank'})
+            return render(request, 'accounts/register.html', validator.get_error())
     
     return render(request, 'accounts/register.html')
