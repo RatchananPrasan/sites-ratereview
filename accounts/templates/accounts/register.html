@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% block title %}RateReview - Sign Up{% endblock %} 
 {% load static %}
 {% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'accounts/css/jquery-ui.min.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'accounts/css/register.css' %}">
 {% endblock %}
 
@@ -48,12 +49,13 @@
                     </div>
                     <p class="hidden">Invalid e-mail address</p>
                 </div>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" id="button-submit">Sign Up</button>
             </form>
         </div>
     </div>
 </div>
 {% endblock %}
 {% block scripts %}
+<script src="{% static 'accounts/scripts/jquery-ui.min.js' %}"></script>
 <script src="{% static 'accounts/scripts/register.js' %}"></script>
 {% endblock %}
