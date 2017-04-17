@@ -9,7 +9,9 @@ function validate(obj) {
         }
     }
     if (object_type == 'text' || object_type == 'password') {
-        $('#password2').trigger('change');
+        if (object_type == 'password') {
+            $('#password2').trigger('change');
+        }
         if (text_input.length < 8 || text_input.includes(' ')) {
             return false;
         } else {
