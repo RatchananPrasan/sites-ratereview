@@ -28,6 +28,7 @@
             </div>
             <ul class="nav navbar-nav">
                 <li><a href="{% url 'sites:home' %}">Home</a></li>
+                <li><a href="{% url 'sites:content' %}">Browse</a></li>
                 <li><a href="{% url 'sites:about' %}">About</a></li>
             </ul>
             {% if user.is_authenticated %}

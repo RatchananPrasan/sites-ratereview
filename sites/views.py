@@ -7,3 +7,7 @@ def sites_home_view(request):
 
 def sites_about_view(request):
     return render(request, 'sites/about.html')
+
+
+def sites_content_view(request):
+    return render(request, 'sites/content.html')
