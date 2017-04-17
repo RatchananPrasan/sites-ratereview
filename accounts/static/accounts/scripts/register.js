@@ -25,11 +25,14 @@ function validate(obj) {
 
 
 $(document).ready(function () {
+    
+    $('#register-container').fadeIn('slow');
+    
     var $ok_span = $('<span class="glyphicon glyphicon-ok form-control-feedback removable" aria-hidden="true"></span>')
     var $remove_span = $('<span class="glyphicon glyphicon-remove form-control-feedback removable" aria-hidden="true"></span>')
 
-    var error_class = "has-error has-feedback";
-    var ok_class = "has-success has-feedback";
+    var error_class = 'has-error has-feedback';
+    var ok_class = 'has-success has-feedback';
 
     $('form').on('change', 'input', function () {
         var obj = $(this);
