@@ -48,7 +48,7 @@ $(document).ready(function () {
     var error_class = 'has-error has-feedback';
     var ok_class = 'has-success has-feedback';
 
-    $('form').on('change', 'input', function () {
+    $('#register-form').on('change', 'input', function () {
         var obj = $(this);
         var parent = obj.closest('.form-group');
         var hidden = obj.parents('.form-group').find('p');
@@ -79,8 +79,8 @@ $(document).ready(function () {
         }
     });
 
-    var $form_group = $('.form-group');
-    $('button[type="submit"]').on('click', function () {
+    var $form_group = $('#register-form').find('.form-group');
+    $('#register-form').on('submit', function () {
         if (check_username && check_password1 && check_password2 && check_email) {
             return true;
         }
