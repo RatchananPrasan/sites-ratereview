@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from .models import RegisterForm, Profile
 
 # Create your views here.
 def accounts_login_view(request):
@@ -31,6 +32,20 @@ def accounts_register_view(request):
         return redirect('sites:home')
     
     if request.method == "POST":
-        pass
-    
-    return render(request, 'accounts/register.html')
+        form = RegisterForm(request.POST)
+        
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            email = form.cleaned_data['email']
+
+            user = User.objects.create(username=username, password=password, email=email)
+            user.set_password(password)
+            user.save()
+            profile = Profile.objects.create(user=user)
+            login(request, user)
+            return redirect('sites:home')
+    else:
+        form = RegisterForm()
+        
+    return render(request, 'accounts/register.html', {'form':form})
