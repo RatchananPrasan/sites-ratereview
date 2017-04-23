@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .validate import AccountValidator
 
 # Create your views here.
 def accounts_login_view(request):
@@ -32,18 +31,6 @@ def accounts_register_view(request):
         return redirect('sites:home')
     
     if request.method == "POST":
-        username = request.POST['username']
-        password1 = request.POST['password1']
-        password2 = request.POST['password2']
-        email = request.POST['email']
-        
-        validator = AccountValidator(username, password1, password2, email)
-        
-        if validator.is_valid():
-            user = User.objects.create_user(username=username, password=password1, email=email)
-            login(request, user)
-            return redirect('sites:home')
-        else:
-            return render(request, 'accounts/register.html', validator.get_error())
+        pass
     
     return render(request, 'accounts/register.html')
