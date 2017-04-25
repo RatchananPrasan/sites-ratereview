@@ -24,6 +24,8 @@ div.first-part{
 }
 h1.first-pic{
     font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+    top: 0;
+    bottom: auto;
 }
 
 h1.third-pic{
