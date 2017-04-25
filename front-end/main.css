@@ -20,6 +20,7 @@ div.first-part{
     font-size: 50px;
     font-family: fantasy;
     text-align: right;
+    width: 100%;
 }
 h1.first-pic{
     font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
@@ -70,4 +71,8 @@ div.footer-copyright p{
     position: relative;
     left: 45%;
     top: 50%;
+}
+img{
+    width: 100%;
+    
 }
