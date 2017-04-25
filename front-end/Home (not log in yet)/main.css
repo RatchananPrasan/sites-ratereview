@@ -22,6 +22,10 @@ div.first-part{
     text-align: right;
     width: 100%;
 }
+#slide{
+    width: 100%;
+    
+}
 h1.first-pic{
     font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
     top: 0;
@@ -33,11 +37,39 @@ h1.third-pic{
     font-size: 100px;
     color: #ffffff;
 }
+div.sec-part{
+    background-color: #d48a02;
+    border-bottom: 1px solid;
+    border-bottom-color: chocolate;
 
+}
 
+div.quote{
+    color: white;
+    display: inline-block;
+    width: 32.26%;
+    padding-left: 5%;
+}
+div.head-sec{
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+    display: block;
+    width: 33.33%;
+    border-bottom: 1px solid;
+    border-bottom-color: black;
+    position: relative;
+    left: 33.33%;
+    padding-top: 20px;
+}
+.text{
+    color: white;
+    text-align: center;
+}
+.user-review{
+    width: 100px;
+    border-radius: 50%;
+}
 footer{
     width: 100%;
-
     background-color: #2f2f2f;
 
 }
@@ -73,8 +105,4 @@ div.footer-copyright p{
     position: relative;
     left: 45%;
     top: 50%;
-}
-img{
-    width: 100%;
-    
 }
