@@ -7,7 +7,7 @@
   - pip install -r "requirements.txt" (make sure to be in the directory same as requirements.txt"
 - Create folder named migrations with file \_\_init\_\_.py in it and place it within these folders
   - accounts
-- After every pull run the following command lines (This will generates all the tables required)
+- Run the following command lines (This will generates all the tables required)
   - manage.py makemigrations
   - manage.py migrate
 - To run the server use the command
@@ -25,3 +25,5 @@
   - accounts/static/accounts/scripts/login.js for javascript
   - accounts/static/accounts/styles/login.css for css
   - accounts/static/accounts/images/login_background.jpg for images
+- Images stored by database should be the media folder
+  - media/(app_name)/
