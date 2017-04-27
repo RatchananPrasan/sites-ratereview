@@ -25,5 +25,5 @@
   - accounts/static/accounts/scripts/login.js for javascript
   - accounts/static/accounts/styles/login.css for css
   - accounts/static/accounts/images/login_background.jpg for images
-- Images stored by database should be the media folder
+- Images stored by database should be in the media folder
   - media/(app_name)/
