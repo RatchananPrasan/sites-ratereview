@@ -1,0 +1,11 @@
+.register-container {
+    width: 400px;
+    padding: 25px;
+    margin: auto;
+    background-color: white;
+    border-radius: 10px;
+}
+
+body {
+    background-color: #f2f2f2;
+}

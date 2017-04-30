@@ -1,0 +1,10 @@
+<img src="{{ profile.image.url }}" class="image image-profile">
+<hr>
+{% if request.user == profile %}
+<ul class="nav nav-sidebar">
+    <li><a href="{% url 'accounts:profile' profile.get_username %}">Profile</a></li>
+    <li><a href="{% url 'accounts:edit_profile' %}">Edit Profile</a></li>
+    <li><a href="{% url 'accounts:change_password' %}">Change Password</a></li>
+    <li><a href="{% url 'accounts:change_profile_pic' %}">Change Profile Picture</a></li>
+</ul>
+{% endif %}

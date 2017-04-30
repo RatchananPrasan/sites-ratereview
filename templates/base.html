@@ -29,13 +29,12 @@
             <ul class="nav navbar-nav">
                 <li><a href="{% url 'sites:home' %}">Home</a></li>
                 <li><a href="{% url 'sites:content' %}">Browse</a></li>
-                <li><a href="{% url 'sites:about' %}">About</a></li>
             </ul>
-            {% if user.is_authenticated %}
+            {% if request.user.is_authenticated %}
             <!-- USER IS LOGGED IN -->
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <p class="navbar-text">Sign in as, {{ user.username }}</p>
+                    <p class="navbar-text">Sign in as, <a class="navbar-link" href="{% url 'accounts:profile' request.user.get_username %}">{{ request.user.get_username }}</a></p>
                 </li>
                 <li>
                     <form class="navbar-form" method="post" action="{% url 'accounts:logout' %}">
@@ -51,7 +50,7 @@
                 <a class="btn btn-default navbar-btn" href="{% url 'accounts:register' %}">Sign up</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{% url 'accounts:login' %}">Sign in</a></li>
+                <li><a href="{% url 'accounts:login' %}?next={{ request.path }}">Sign in</a></li>
             </ul>
             <!-- END USER NOT LOGGED IN -->
             {% endif %}
@@ -60,6 +59,8 @@
 
     {% block content %}{% endblock %}
 
+    
+    
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
