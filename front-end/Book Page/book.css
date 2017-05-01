@@ -13,9 +13,11 @@ body{
 }
 h1{
     text-align: center;
-    color: #908451;
-    font-family: "Lucida Handwriting";
+    color: #b9c1ff;
+     font-family: "Jack Lane";
     font-weight: bold;
+    position: relative;
+    bottom: 10px;
 }
 button.btn {
     height: 40px;
@@ -24,6 +26,7 @@ button.btn {
 }
 h3{
     text-align: center;
+    font-family: "Jack Lane";
     color: white;
 }
 .text{
@@ -76,10 +79,12 @@ span.text-content {
     cursor: pointer;
     display: table;
     font-size: 20px;
-    left: 20%;
+    left: 12%;
     position: absolute;
-    top: 15%;
+    top: 8%;
     opacity: 0;
+    width: 170px;
+    height: 245px;
     -webkit-transition: opacity 500ms;
     -moz-transition: opacity 500ms;
     -o-transition: opacity 500ms;
@@ -98,10 +103,18 @@ ul.book-list li:hover img{
 ul.book-list li:hover span.text-content {
     opacity: 1;
 }
+.score{
+    text-align: center;
+    padding-top: 5px;
+}
+.name{
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
 .detail{
     color: white;
     border: 0;
-    background-color: brown;
     background-color: brown;
     font-weight: bold;
     font-size: 20px;
