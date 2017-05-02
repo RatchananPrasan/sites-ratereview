@@ -23,11 +23,6 @@ class Message(models.Model):
     
     class Meta:
         ordering = ['-pub_date']
-        
-        
-    def get_pub_date(self):
-        time = timezone.localtime(self.pub_date)
-        return time.strftime('%d %b, %Y %H:%M')
     
     
     def get_replies(self):
@@ -46,8 +41,3 @@ class Reply(models.Model):
     
     class Meta:
         ordering = ['pub_date']
-        
-    
-    def get_pub_date(self):
-        time = timezone.localtime(self.pub_date)
-        return time.strftime('%d %b, %Y %H:%M')

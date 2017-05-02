@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
-from django.forms import Form, ModelForm, ImageField, EmailField, EmailInput, TextInput, Textarea
+from django.forms import Form, ModelForm, ImageField, EmailField, EmailInput, TextInput, Textarea, PasswordInput
 from .models import User, Message, Reply
 
 class RegisterForm(UserCreationForm):
@@ -9,8 +9,17 @@ class RegisterForm(UserCreationForm):
         model = User
         fields = ['username', 'password1' , 'password2', 'email']
         widgets = {
-            'username': TextInput(attrs={'autofocus':True})
+            'username': TextInput(attrs={'autofocus':True,
+                                         'class':'form-control'})
         }
+        
+        
+    def __init__(self, *args, **kwargs):
+        super(RegisterForm, self).__init__(*args, **kwargs)
+        self.fields['password1'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['password2'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['email'].widget.attrs.update({'class' : 'form-control'})
+        
         
     def save(self, commit=True):
         user = super(RegisterForm, self).save(commit=False)
@@ -29,9 +38,16 @@ class EditProfileForm(ModelForm):
             'description' : 'About Me',
         }
         widgets = {
-            'first_name': TextInput(attrs={'autofocus':True}),
-            'email': EmailInput(attrs={'required':True}),
-            'description': Textarea(attrs={'rows': '6'}),
+            'first_name': TextInput(attrs={'autofocus':True,
+                                           'class':'form-control'}),
+            
+            'last_name': TextInput(attrs={'class':'form-control'}),
+            
+            'email': EmailInput(attrs={'required':True,
+                                       'class':'form-control'}),
+            
+            'description': Textarea(attrs={'rows': '6',
+                                           'class':'text-input'}),
         }
         
         
