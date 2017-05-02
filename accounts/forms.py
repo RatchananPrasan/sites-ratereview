@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
-from django.forms import Form, ModelForm, ImageField, EmailField, EmailInput, TextInput, Textarea, PasswordInput
+from django.forms import Form, ModelForm, ImageField, EmailField, EmailInput, TextInput, Textarea
 from .models import User, Message, Reply
 
 class RegisterForm(UserCreationForm):
