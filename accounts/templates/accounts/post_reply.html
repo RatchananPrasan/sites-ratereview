@@ -1,9 +1,9 @@
 {% load humanize %}
 {% for replies in message.get_replies %}
+{% if forloop.counter == 1 %}
+<h4>Replies</h4>
+{% endif %}
 <div class="row">
-    {% if forloop.counter == 1 %}
-    <h4>Replies</h4>
-    {% endif %}
     <div class="col-sm-1">
         <div class="row">
             <img src="{{ replies.reply_by.image.url }}" class="image image-post">
@@ -11,23 +11,25 @@
     </div>
     <div class="col-sm-11">
         <div class="row">
-            <div class="left">
-                <a href="{% url 'accounts:profile' replies.reply_by.get_username %}">{{ replies.reply_by.get_username }}</a>
-            </div>
-            <div class="right">
-                {% if request.user == replies.reply_by or request.user == replies.message.post_to %}
-                <form class="reply-delete-form" method="post" action="{% url 'accounts:reply_delete' replies.id %}">
-                    {% csrf_token %}
+            <div class="col">
+                <div class="left">
+                    <a href="{% url 'accounts:profile' replies.reply_by.get_username %}">{{ replies.reply_by.get_username }}</a>
+                </div>
+                <div class="right">
+                    {% if request.user == replies.reply_by or request.user == replies.message.post_to %}
+                    <form class="reply-delete-form" method="post" action="{% url 'accounts:reply_delete' replies.id %}">
+                        {% csrf_token %}
+                        <em>Posted {{ replies.pub_date|naturaltime }}</em>
+                        <button type="submit" class="close"><span aria-hidden="true">&times;</span></button>
+                    </form>
+                    {% else %}
                     <em>Posted {{ replies.pub_date|naturaltime }}</em>
-                    <button type="submit" class="close"><span class="glyphicon glyphicon-remove"></span></button>
-                </form>
-                {% else %}
-                <em>Posted {{ replies.pub_date|naturaltime }}</em>
-                {% endif %}
+                    {% endif %}
+                </div>
+                <div class="clear-float"></div>
+                <p>{{ replies.reply }}</p>
+                <hr>
             </div>
-            <div class="clear-float"></div>
-            <p>{{ replies.reply }}</p>
-            <hr>
         </div>
     </div>
 </div>

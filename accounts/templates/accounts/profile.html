@@ -12,21 +12,23 @@
             </div>
             <div class="col-sm-8 profile-container">
                 <div class="row smooth-border">
-                    <h1>{{ profile.get_username|title }}</h1>
-                    <h3>{{ profile.get_full_name }}</h3>
-                    <p>{{ profile.description }}</p>
-                    <hr>
-                    <h2>Posts</h2>
-                    {% if request.user.is_authenticated %}
-                    <form method="post" action="{% url 'accounts:profile_post' profile.get_username %}" id="profile-post">
-						{% csrf_token %}
-						{{ message_form.post }}
-                        <button type="submit" class="btn btn-success">Post</button>
-                    </form>
-                    {% else %}
-                    <hr>
-                    <a class="btn btn-success" href="{% url 'accounts:login' %}?next={{ request.path }}">Post Something</a>
-                    {% endif %}
+                    <div class="col">
+                        <h1>{{ profile.get_username|title }}</h1>
+                        <h3>{{ profile.get_full_name }}</h3>
+                        <p>{{ profile.description }}</p>
+                        <hr>
+                        <h2>Posts</h2>
+                        {% if request.user.is_authenticated %}
+                        <form method="post" action="{% url 'accounts:profile_post' profile.get_username %}" id="profile-post">
+                            {% csrf_token %}
+                            {{ message_form.post }}
+                            <button type="submit" class="btn btn-success" style="cursor:pointer;">Post</button>
+                        </form>
+                        {% else %}
+                        <hr>
+                        <a class="btn btn-success" href="{% url 'accounts:login' %}?next={{ request.path }}">Post Something</a>
+                        {% endif %}
+                    </div>
                 </div>
 
                 <div id="message-output">
@@ -40,7 +42,9 @@
                     <input type="hidden" name="post_num" id="post_num">
                 </form>
                 <div class="row text-center hidden" id="no-more-posts">
-                    <h1>No More Posts</h1>
+                    <div class="col">
+                        <h1>No More Posts</h1>
+                    </div>
                 </div>
             </div>
         </div>

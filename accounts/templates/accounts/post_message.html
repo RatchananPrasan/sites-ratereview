@@ -1,54 +1,60 @@
 {% load humanize %}
 {% for message in messages %}
 <div class="row smooth-border">
-    <div class="row row-message">
-        <div class="col-sm-1">
-            <div class="row">
-                <img src="{{ message.post_by.image.url }}" class="image image-post">
+    <div class="col">
+        <div class="row row-message">
+            <div class="col-sm-1">
+                <div class="row">
+                    <img src="{{ message.post_by.image.url }}" class="image image-post">
+                </div>
             </div>
-        </div>
-        <div class="col-sm-11">
-            <div class="row">
-                <div class="left">
-                    <a href="{% url 'accounts:profile' message.post_by.get_username %}">{{ message.post_by.get_username }}</a>
+            <div class="col-sm-11">
+                <div class="row">
+                    <div class="col">
+                        <div class="left">
+                            <a href="{% url 'accounts:profile' message.post_by.get_username %}">{{ message.post_by.get_username }}</a>
+                        </div>
+                        <div class="right">
+                            {% if request.user == profile or request.user == message.post_by %}
+                            <form method="post" action="{% url 'accounts:message_delete' message.id %}">
+                                {% csrf_token %}
+                                <em>Posted {{ message.pub_date|naturaltime }}</em>
+                                <button type="submit" class="close"><span aria-hidden="true">&times;</span></button>
+                            </form>
+                            {% else %}
+                            <em>Posted {{ message.pub_date|naturaltime }}</em>
+                            {% endif %}
+                        </div>
+                        <div class="clear-float"></div>
+                        <p>{{ message.post }}</p>
+                        <div class="right">
+                            {% if request.user.is_authenticated %}
+                            <a class="reply-link" href="javascript:;">Reply</a> 
+                            {% else %}
+                            <a href="{% url 'accounts:login' %}?next={{ request.path }}">Reply</a> 
+                            {% endif %}
+                        </div>
+                        <div class="clear-float"></div>
+                        {% if request.user.is_authenticated %}
+                        <div class="reply-box hidden">
+                            <form method="post" action="{% url 'accounts:post_reply' message.id %}" class="reply-form">
+                                {% csrf_token %} 
+                                {{ reply_form.reply }}
+                                <button type="submit" class="btn btn-success" style="cursor:pointer;">Reply</button>
+                            </form>
+                            <hr>
+                        </div>
+                        {% endif %}
+                    </div>
                 </div>
-                <div class="right">
-                    {% if request.user == profile or request.user == message.post_by %}
-                    <form method="post" action="{% url 'accounts:message_delete' message.id %}">
-                        {% csrf_token %}
-                        <em>Posted {{ message.pub_date|naturaltime }}</em>
-                        <button type="submit" class="close"><span class="glyphicon glyphicon-remove"></span></button> 
-                    </form>
-                    {% else %}
-                    <em>Posted {{ message.pub_date|naturaltime }}</em>
-                    {% endif %}
+                <!-- Reply Start -->
+                <div class="row">
+                    <div class="col reply-output">
+                    {% include 'accounts/post_reply.html' with message=message %}
+                    </div>
                 </div>
-                <div class="clear-float"></div>
-                <p>{{ message.post }}</p>
-                <div class="right">
-                    {% if request.user.is_authenticated %}
-                    <a class="reply-link">Reply</a> 
-                    {% else %}
-                    <a href="{% url 'accounts:login' %}?next={{ request.path }}">Reply</a> 
-                    {% endif %}
-                </div>
-                <div class="clear-float"></div>
-                {% if request.user.is_authenticated %}
-                <div class="reply-box hidden">
-                    <form method="post" action="{% url 'accounts:post_reply' message.id %}" class="reply-form">
-                        {% csrf_token %} 
-                        {{ reply_form.reply }}
-                        <button type="submit" class="btn btn-success">Reply</button>
-                    </form>
-                    <hr>
-                </div>
-                {% endif %}
+                <!-- Reply End -->
             </div>
-            <!-- Reply Start -->
-            <div class="row reply-output">
-                {% include 'accounts/post_reply.html' with message=message %}
-            </div>
-            <!-- Reply End -->
         </div>
     </div>
 </div>

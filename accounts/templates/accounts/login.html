@@ -9,9 +9,10 @@
     <div class="row">
         <div class="login-container">
             {% if error %}
-            <div class="alert alert-danger alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
                 {{ error }}
             </div>
             {% endif %}
@@ -30,10 +31,10 @@
                     <label for="password">Password</label>
                     <input class="form-control" type="password" id="password" name="password" required>
                 </div>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+                <button class="btn btn-lg btn-warning btn-block" type="submit" style="cursor:pointer;">Log in</button>
             </form>
             <hr>
-            <p>Don't have an account? </p>
+            <p>Don't have an account?</p>
             <a class="btn btn-lg btn-success btn-block" href="{% url 'accounts:register' %}">Sign Up</a>
         </div>
     </div>
