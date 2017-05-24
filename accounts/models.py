@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
-from datetime import datetime
 # Create your models here.
 
 class User(AbstractUser):
@@ -23,11 +22,6 @@ class Message(models.Model):
     
     class Meta:
         ordering = ['-pub_date']
-        
-        
-    def get_pub_date(self):
-        time = timezone.localtime(self.pub_date)
-        return time.strftime('%d %b, %Y %H:%M')
     
     
     def get_replies(self):
@@ -46,8 +40,3 @@ class Reply(models.Model):
     
     class Meta:
         ordering = ['pub_date']
-        
-    
-    def get_pub_date(self):
-        time = timezone.localtime(self.pub_date)
-        return time.strftime('%d %b, %Y %H:%M')

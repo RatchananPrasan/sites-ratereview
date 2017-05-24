@@ -60,7 +60,7 @@ def profile_view(request, username):
     if request.method == "POST" and request.is_ajax():
         post_num = int(request.POST['post_num'])
         cut_messages = messages[post_num:post_num + POST_PER_REQUEST]
-        if len(cut_messages) > 0:
+        if cut_messages:
             return render(request, 'accounts/post_message.html', {'profile':profile,
                                                                   'messages':cut_messages,
                                                                   'reply_form':reply_form,

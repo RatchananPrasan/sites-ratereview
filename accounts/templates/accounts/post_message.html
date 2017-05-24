@@ -1,3 +1,4 @@
+{% load humanize %}
 {% for message in messages %}
 <div class="row smooth-border">
     <div class="row row-message">
@@ -15,11 +16,11 @@
                     {% if request.user == profile or request.user == message.post_by %}
                     <form method="post" action="{% url 'accounts:message_delete' message.id %}">
                         {% csrf_token %}
-                        <em>Posted on {{ message.get_pub_date }}</em>
+                        <em>Posted {{ message.pub_date|naturaltime }}</em>
                         <button type="submit" class="close"><span class="glyphicon glyphicon-remove"></span></button> 
                     </form>
                     {% else %}
-                    <em>Posted on {{ message.get_pub_date }}</em>
+                    <em>Posted {{ message.pub_date|naturaltime }}</em>
                     {% endif %}
                 </div>
                 <div class="clear-float"></div>
