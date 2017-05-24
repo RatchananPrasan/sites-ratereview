@@ -1,0 +1,144 @@
+
+body{
+    /*background-color: #ded9d9;
+    background-color: #172A3A;
+    width: 1920px;
+    height: 1080px;*/
+     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(bg.jpg);
+        background-attachment: fixed;
+}
+.info{
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    width: 1365px;
+    padding-bottom: 10px;
+}
+.image{
+    float: left;
+    padding-right: 50px;
+}
+.detail{
+    float: left;
+}
+th,td{
+    padding-top: 10px;
+    color: white;
+}
+th{
+   padding-right: 10px; 
+}
+.chart{
+    float: left;
+    position: relative;
+    bottom: 50px;
+    right: 50px
+}
+
+
+.rt1,.rt2,.rt3,.rt4,.rt5{
+    font-size: 40px;
+    cursor: pointer;
+    color: white;
+}
+
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+    float: left;
+}
+.rating > span2 {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.rating > span.rt1:hover:before,
+.rating > span.rt1:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+    color: #ff3143;
+}
+
+.rating > span.rt2:hover:before,
+.rating > span.rt2:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+    color: #ff9736;
+}
+
+.rating > span.rt3:hover:before,
+.rating > span.rt3:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+    color: #ffcc37;
+}
+
+.rating > span.rt4:hover:before,
+.rating > span.rt4:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+    color: #74cc4e;
+}
+    
+.rating > span.rt5:hover:before,
+.rating > span.rt5:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+    color: #007f50;
+}
+
+.rating{
+   position: relative;
+    bottom: 15px;
+    padding-left: 10px;
+}
+
+
+.ment{
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+}
+.topic{
+    color: white;
+    font-size: 50px;
+    font-weight:700;
+    
+}
+.cmt-box{
+    padding-top: 15px;
+    width: 500px;
+    height: 200px;
+    background-color: whitesmoke;
+    padding-bottom: 50px;
+}
+.inrow1{
+    padding-left: 10px;
+    
+    
+}
+.cmt-each{
+    padding-bottom: 50px;
+}
+.row2{
+    padding-left: 10px;
+    padding-top: 20px;
+}
+.profile{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; 
+}
+
+
+.rate-txt{
+    color: whitesmoke;
+}
+
+.review-txt{
+    color: whitesmoke;
+}
+.rate-zone{
+    padding-top: 20px;
+}
