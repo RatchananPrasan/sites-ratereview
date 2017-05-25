@@ -14,6 +14,7 @@ body{
     padding-top: 50px;
     width: 1365px;
     padding-bottom: 10px;
+    padding-left: 20px;
 }
 .image{
     float: left;
@@ -37,68 +38,11 @@ th{
 }
 
 
-.rt1,.rt2,.rt3,.rt4,.rt5{
-    font-size: 40px;
-    cursor: pointer;
-    color: white;
-}
-
-.rating {
-  unicode-bidi: bidi-override;
-  direction: rtl;
-    float: left;
-}
-.rating > span2 {
-  display: inline-block;
-  position: relative;
-  width: 1.1em;
-}
-.rating > span.rt1:hover:before,
-.rating > span.rt1:hover ~ span:before {
-   content: "\2605";
-   position: absolute;
-    color: #ff3143;
-}
-
-.rating > span.rt2:hover:before,
-.rating > span.rt2:hover ~ span:before {
-   content: "\2605";
-   position: absolute;
-    color: #ff9736;
-}
-
-.rating > span.rt3:hover:before,
-.rating > span.rt3:hover ~ span:before {
-   content: "\2605";
-   position: absolute;
-    color: #ffcc37;
-}
-
-.rating > span.rt4:hover:before,
-.rating > span.rt4:hover ~ span:before {
-   content: "\2605";
-   position: absolute;
-    color: #74cc4e;
-}
-    
-.rating > span.rt5:hover:before,
-.rating > span.rt5:hover ~ span:before {
-   content: "\2605";
-   position: absolute;
-    color: #007f50;
-}
-
-.rating{
-   position: relative;
-    bottom: 15px;
-    padding-left: 10px;
-}
-
-
 .ment{
     overflow: hidden;
     display: flex;
     justify-content: flex-start;
+    margin: auto;
 }
 .topic{
     color: white;
@@ -115,11 +59,24 @@ th{
 }
 .inrow1{
     padding-left: 10px;
-    
+    width: 500px;
+    position: relative;
+    left: 15px;
+    bottom: 15px;
+    background-color: gray;
+    height: 50px;
     
 }
 .cmt-each{
     padding-bottom: 50px;
+}
+.cmt-txt{
+    width: 500px;
+    height: 160px;
+    position: relative;
+    right: 10px;
+    bottom: 35px;
+    word-wrap:break-word;
 }
 .row2{
     padding-left: 10px;
@@ -128,7 +85,12 @@ th{
 .profile{
     width: 40px;
     height: 40px;
-    border-radius: 50%; 
+    border-radius: 50%;
+    position: relative;
+    top: 3px;
+}
+.name,.date,.rate-score{
+    padding-top: 15px;
 }
 
 
@@ -141,4 +103,44 @@ th{
 }
 .rate-zone{
     padding-top: 20px;
+}
+
+div.stars {
+  width: 270px;
+  display: inline-block;
+    position: relative;
+    bottom: 20px;
+}
+
+input.star { display: none; }
+
+label.star {
+  float: right;
+  padding: 10px;
+  font-size: 36px;
+  color: #444;
+  transition: all .2s;
+}
+
+input.star:checked ~ label.star:before {
+  content: '\2605';
+  color: #FD4;
+  transition: all .25s;
+}
+
+input.star-5:checked ~ label.star:before {
+  color: #FE7;
+  text-shadow: 0 0 20px #952;
+}
+
+input.star-1:checked ~ label.star:before { color: #F62; }
+
+label.star:hover { transform: rotate(-15deg) scale(1.3); }
+
+label.star:before {
+  content: '\2605';
+}
+
+.comment{
+    padding-left: 10px;
 }

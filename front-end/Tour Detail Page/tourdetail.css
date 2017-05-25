@@ -12,7 +12,7 @@ body{
     display: flex;
     justify-content: center;
     padding-top: 50px;
-    width: 1365px;
+    max-width: 2000px;
     padding-bottom: 10px;
     padding-left: 20px;
 }
@@ -59,11 +59,22 @@ th{
 }
 .inrow1{
     padding-left: 10px;
-    
-    
+    width: 500px;
+    position: relative;
+    left: 15px;
+    bottom: 15px;
+    background-color: gray;
 }
 .cmt-each{
     padding-bottom: 50px;
+}
+.cmt-txt{
+    width: 500px;
+    height: 160px;
+    position: relative;
+    right: 10px;
+    bottom: 35px;
+    word-wrap:break-word;
 }
 .row2{
     padding-left: 10px;
@@ -73,6 +84,11 @@ th{
     width: 40px;
     height: 40px;
     border-radius: 50%; 
+    position: relative;
+    top: 3px;
+}
+.name,.date,.rate-score{
+    padding-top: 15px;
 }
 
 
@@ -125,4 +141,7 @@ label.star:before {
 
 .long-desc{
     color: white;
+}
+.comment{
+    padding-left: 10px;
 }
