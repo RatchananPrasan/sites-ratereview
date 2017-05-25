@@ -1,0 +1,35 @@
+.topic{
+    border-bottom: 1px solid;
+    border-bottom-color: #9f9e9e;
+    padding: 15px;
+    font-family: "Jack Lane";
+    font-size: 70px;
+    color: #6ac045;
+}
+body{
+    background-color: #f2f2f2;
+}
+.detail{
+    padding: 30px 10px 0px 0px;
+    font-family: "Jack Lane";
+    font-size: 30px;
+}
+.txt-book, .txt-movie{
+    padding-top: 50px;
+    font-family: "Jack Lane";
+    font-size: 50px;
+}
+.txt-recipe{
+    padding-top: 110px;
+    font-family: "Jack Lane";
+    font-size: 50px;
+}
+a:hover{
+    text-decoration: none;
+}
+.container{
+    border-bottom: 1px solid;
+    border-bottom-color: #6c6c6c;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
