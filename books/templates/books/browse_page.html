@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="{% static "books/book.css" %}"/>
+{% endblock %}
+{% block content %}
+        <div class="first-part">
+            <br>
+            <div class="search">
+                <ul class="nav justify-content-center">
+                    <li class="nav-item li2">
+                     <h1>BOOKS:</h1>
+
+                  </li>
+                <form action = {% url 'books:searching_for_book' %}>
+                  <li class="nav-item li2">
+                     <input class="form-control mr-sm-2" type="text" placeholder="Search" name = "search_key">
+
+                  </li>
+                   <button type="submit" class="btn btn-success" style="cursor: pointer;">Search</button>
+                     {% if request.user.is_authenticated %}
+                    <a style="cursor: pointer; " href="{% url 'books:create_book' %}">
+                        <button type="button" class="btn btn-success" style="cursor: pointer;">Create</button></a>
+                    {% endif %}
+                    </form>
+                </ul>
+               
+            </div>
+        <br>
+        
+        
+        </div>
+        <div class="sec-part">
+            <br>
+            <h3> 
+                {% if book_found %}
+                    {% if book_found > 1 %}
+                        {{book_found}} Books Found
+                    {% else %}
+                        {{book_found}} Book Found
+                    {% endif %}
+                {% else %}
+                    0 Book Found               
+                {% endif %}
+            </h3>
+            <br>
+            <ul class="book-list">
+                {%for book in books%}
+                <li class = "li2">
+                    <div class = "book">
+                        <img src = "{{book.book_cover.url}}" style = "width:170px; height:245px;" />
+                        <span class="text-content"><span><i class="fa fa-star-o" aria-hidden="true"></i>
+                        <br>
+                            <div class="score">
+                                {{book.getRating|floatformat:1}} / 5
+                             </div>
+                             <div class="name">
+                                 <p> {{book.book_name}} </p>
+                             </div> 
+                            
+                            <a href={% url 'books:book_detail' book.id%}>
+                             <button type="button" class="detail" >View Details</button><br>
+                                </a>
+                             </span></span>  
+                            
+                    </div>
+                </li>
+                
+                {%endfor%}
+           
+
+            </ul>
+      
+        </div>
+{% endblock %}

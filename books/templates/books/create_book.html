@@ -12,22 +12,19 @@
         Enter Book's info
     </div>
     
-    <form action="/create-book/ " method = "post">
-        <!--
-        ISBN: <input type="text" name="isbn" required><br>
-        Book name: <input type="text" name="book_name"><br>
-        Author name: <input type = "text" name = "author_name"> <br>
-        
-        Genre  
-        <select name = "select1">
-            <option values = "" disabled selected> -- Select genre -- </option>
-            <option value = "fiction"> Fiction </option>
-            <option value = "non-fiction"> Non Fiction </option>
-            <option value = "other"> other </option>
-        </select>
-        -->
+    {% if error %}
+        {{ error }}
+    {% endif %}
+    
+    <form action="{% url 'books:create_book'%}" method = "post" enctype='multipart/form-data'>
         {% csrf_token %}
-        {{ form }}
+        {% for field in form %}
+        <div>
+            {{ field.errors}}
+            {{ field.label_tag}} {{field}} <br>
+        </div>
+        {% endfor %}
+        
         <input type="submit" value="Submit">
     </form>
     </body>
