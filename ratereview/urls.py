@@ -24,6 +24,10 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^sites/', include('sites.urls')),
     url(r'^accounts/', include('accounts.urls')),
+<<<<<<< HEAD
     url(r'^books/',include('books.urls')),
+=======
+    url(r'^recipes/', include('recipes.urls')),
+>>>>>>> 9ccd27dbc0c9c42da2bbc62f4c34f031f238d9ee
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

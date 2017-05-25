@@ -9,17 +9,19 @@ $(document).ready(function() {
                 $('#image-wrap').removeClass('hidden');
                 $uploadCrop.croppie('bind', {
                     url: e.target.result
-                })
+                });
             }
 
             reader.readAsDataURL(input.files[0]);
+        } else {
+            $('#image-wrap').addClass('hidden');
         }
     }
     
     $uploadCrop = $('#image-wrap').croppie({
         boundary: {
             width: 300,
-            height: 300,
+            height: 300
         },
         viewport: {
             width: 128,

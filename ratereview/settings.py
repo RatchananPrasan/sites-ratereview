@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'sites.apps.SitesConfig',
     'accounts.apps.AccountsConfig',
     'books.apps.BooksConfig',
-
+    #'recipes.apps.RecipesConfig',
 ]
 
 MIDDLEWARE = [

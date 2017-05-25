@@ -8,7 +8,7 @@
 <div class="container">
     {% if message %}
     <div class="row">
-        <div class="col-sm-4 col-sm-offset-4">
+        <div class="col-sm-4 offset-sm-4">
             <div class="alert alert-success alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 {{ message }}
@@ -22,19 +22,21 @@
         </div>
         <div class="col-sm-8 profile-container">
             <div class="row smooth-border">
-                <h1>Edit Profile</h1>
-                <hr>
-                <form method="post" action="{% url 'accounts:edit_profile' %}">
-                    {% csrf_token %}
-                    {% for field in form %}
-                    <div class="form-group">
-                        {{ field.label_tag }}
-                        {{ field }}
-                        {{ field.errors }}
-                    </div>
-                    {% endfor %}
-                    <button type="submit" class="btn btn-success">Save</button>
-                </form>
+                <div class="col">
+                    <h1>Edit Profile</h1>
+                    <hr>
+                    <form method="post" action="{% url 'accounts:edit_profile' %}">
+                        {% csrf_token %}
+                        {% for field in form %}
+                        <div class="form-group">
+                            {{ field.label_tag }}
+                            {{ field }}
+                            {{ field.errors }}
+                        </div>
+                        {% endfor %}
+                        <button type="submit" class="btn btn-success" style="cursor:pointer;">Save</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

@@ -1,0 +1,30 @@
+header{
+    padding-bottom: 120px;
+    
+    max-width: auto;
+}
+.topic {
+    font-family: "Ravie";
+    text-align: center;
+    color: wheat;
+}
+
+body{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(bg.jpg);
+}
+.detail{
+    text-align: center;
+    padding-top: 20px;
+}
+input, h3,.dropdown{
+  display: inline-block;
+  vertical-align: middle;
+  margin: 10px;
+    
+}
+h3{
+    color: wheat;
+}
+.info{
+    padding-top: 5%;;
+}

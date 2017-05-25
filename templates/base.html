@@ -9,67 +9,70 @@
     <title>{% block title %}{% endblock %}</title>
 
     <!-- Bootstrap -->
-    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"> 
     {% block css %}{% endblock %}
 </head>
 
-<body>
-    <nav class="navbar navbar-inverse">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="{% url 'sites:home' %}">RateReview</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li><a href="{% url 'sites:home' %}">Home</a></li>
-                <li><a href="{% url 'sites:content' %}">Browse</a></li>
+<body style="padding-top:70px;">
+
+    <nav class="navbar navbar-toggleable-md navbar-light fixed-top" style="background-color:#f9f9f9;">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'sites:home' %}"><strong>RateReview</strong></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'sites:home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'sites:about' %}">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'sites:content' %}">Browse</a>
+                </li>
             </ul>
             {% if request.user.is_authenticated %}
-            <!-- USER IS LOGGED IN -->
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <p class="navbar-text">Sign in as, <a class="navbar-link" href="{% url 'accounts:profile' request.user.get_username %}">{{ request.user.get_username }}</a></p>
-                </li>
-                <li>
-                    <form class="navbar-form" method="post" action="{% url 'accounts:logout' %}">
-                        {% csrf_token %}
-                        <button class="btn btn-default" type="submit">Log Out</button>
-                    </form>
+            <ul class="navbar-nav mr-5">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="profiledropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor:pointer;">
+                        <img class="img-fluid rounded-circle" src="{{ request.user.image.url }}" style="width:30px;height:30px;">
+                        {{ request.user.get_username }}</a>
+                    <div class="dropdown-menu" aria-labelledby="profiledropdown">
+                        <a class="dropdown-item" href="{% url 'accounts:profile' request.user.get_username %}">Profile</a>
+                        <a class="dropdown-item" href="#" id="logoutLink">Log Out</a>
+                    </div>
                 </li>
             </ul>
-            <!-- END USER IS LOGGED IN-->
+            
+            <form method="post" action="{% url 'accounts:logout' %}" id="logoutForm" style="display:none;">
+                {% csrf_token %}
+            </form>
+            
             {% else %}
-            <!-- USER NOT LOGGED IN -->
-            <div class="nav navbar-nav navbar-right">
-                <a class="btn btn-default navbar-btn" href="{% url 'accounts:register' %}">Sign up</a>
-            </div>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="{% url 'accounts:login' %}?next={{ request.path }}">Sign in</a></li>
-            </ul>
-            <!-- END USER NOT LOGGED IN -->
+            <a class="btn btn-outline-warning mr-3" href="{% url 'accounts:login' %}?next={{ request.path }}">Sign in</a>
+            <a class="btn btn-outline-warning" href="{% url 'accounts:register' %}">Sign up</a>
             {% endif %}
         </div>
+
     </nav>
 
     {% block content %}{% endblock %}
 
-    
-    
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    
+    <!-- Jquery and Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#logoutLink').on('click', function() {
+            $('#logoutForm').submit();    
+        });
+    });
+    </script>
     {% block scripts %}{% endblock %}
 </body>
 
