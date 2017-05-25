@@ -50,7 +50,7 @@ class EditProfileForm(ModelForm):
         
         
 class ImageUploadForm(Form):
-    image = ImageField(label='Upload Image',required=True)
+    image = ImageField(label='Upload Image', required=True)
 
     
 class MessageForm(ModelForm):

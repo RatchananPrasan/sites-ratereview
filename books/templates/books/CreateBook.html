@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}RateReview{% endblock %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="{% static "books/create.css" %}"/>
+{% endblock %}
+
+{% block content %}
+<div class="topic">
+    <h1>CREATE</h1>
+</div>
+
+<div class="info">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 offset-sm-4">
+                <form action="{% url 'books:create_book'%}" method = "post" enctype='multipart/form-data'>
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        <div class="detail">
+                            <div class"inp">
+                                <h3>{{ field.label_tag }}</h3>
+                                {{ field }}
+                                {{ field.errors }}
+                            </div>   
+                        </div>
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-success" style="cursor: pointer;">CREATE</button>
+                </form>
+            </div>
+        </div>
+    </div>  
+</div>
+
+
+{% endblock %}
+

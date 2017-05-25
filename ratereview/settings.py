@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'sites.apps.SitesConfig',
     'accounts.apps.AccountsConfig',
+    'books.apps.BooksConfig',
+    #'recipes.apps.RecipesConfig',
 ]
 
 MIDDLEWARE = [

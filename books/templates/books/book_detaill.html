@@ -1,0 +1,16 @@
+<h1> This page is for displaying book infomation </h1>
+
+
+{% if book %}
+
+
+<h2>{{book.book_name}} </h2> 
+by 
+{{book.author.author_name}} <br>
+{{ book.isbn }} <br>
+{{book.get_genre_display}}
+
+<img src = "{{book.book_cover.url}}"/>
+
+
+{% endif %}

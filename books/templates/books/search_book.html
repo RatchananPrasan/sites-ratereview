@@ -1,0 +1,9 @@
+<h1>This page is for searching book</h1>
+
+{{search_key}}
+
+{%for book in books.all %}
+    <h2>{{book.book_name}} </h2>
+    <img src = "{{book.book_cover.url}}"/>
+
+{%endfor%}
