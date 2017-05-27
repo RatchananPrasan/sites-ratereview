@@ -8,11 +8,12 @@
 {% endblock %}
 
 {% block content %}
+{% if request.user == book.booked_by%}
 <div class="topic">
-    <h1>CREATE</h1>
+    <h1>EDIT </h1>
+    <h1> {{book.book_name}}</h1>
 </div>
 
-{% if request.user.is_authenticated %}
 <div class="info">
     <div class="container">
         <div class="row">
@@ -39,4 +40,3 @@
 
 {% endif %}
 {% endblock %}
-
