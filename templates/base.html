@@ -13,9 +13,9 @@
     {% block css %}{% endblock %}
 </head>
 
-<body style="padding-top:70px;">
+<body>
 
-    <nav class="navbar navbar-toggleable-md navbar-light fixed-top" style="background-color:#f9f9f9;">
+    <nav class="navbar navbar-toggleable-md navbar-light" style="background-color:#f9f9f9;">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -39,10 +39,11 @@
             <ul class="navbar-nav mr-5">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="profiledropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor:pointer;">
-                        <img class="img-fluid rounded-circle" src="{{ request.user.image.url }}" style="width:30px;height:30px;">
+                        <img class="img-fluid rounded-circle" src="{{ request.user.image.url }}" style="width:32px;height:32px;padding:2px;border:1px solid rgba(0, 0, 0, 0.25);">
                         {{ request.user.get_username }}</a>
                     <div class="dropdown-menu" aria-labelledby="profiledropdown">
                         <a class="dropdown-item" href="{% url 'accounts:profile' request.user.get_username %}">Profile</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#" id="logoutLink">Log Out</a>
                     </div>
                 </li>

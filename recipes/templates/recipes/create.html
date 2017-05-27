@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Create Recipe{% endblock %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.4.1/croppie.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'recipes/css/create.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container" style="margin-top:20px;">
+    <div class="row main-container">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <h1>Create Recipe</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <form enctype="multipart/form-data" method="post" action="{% url 'recipes:create' %}" id="create-form">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-sm-6">
+                                {% for field in recipe_initial_form %}
+                                <div class="form-group">
+                                    {{ field.label_tag }}
+                                    {{ field }}
+                                    {{ field.errors }}
+                                </div>
+                                {% endfor %}
+                                <!-- Ingredients -->
+                                <div class="left instruction-title">Ingredients and Amount:</div>
+                                <div class="right"><span class="clickable" id="more-ingredients-button">&#10010;</span></div>
+                                <div class="clear-float"></div>
+                                <div id="ingredients-wrapper">
+                                    {{ ingredients_form_set.non_form_errors }}
+                                    {{ ingredients_form_set.management_form }}
+                                    {% for form in ingredients_form_set %}
+                                    <div class="form-group">
+                                        {{ form.text }}
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <!-- Directions -->
+                                <div class="left instruction-title">Directions:</div>
+                                <div class="right"><span class="clickable" id="more-directions-button">&#10010;</span></div>
+                                <div class="clear-float"></div>
+                                <div id="directions-wrapper">
+                                    {{ directions_form_set.non_form_errors }}
+                                    {{ directions_form_set.management_form }}
+                                    {% for form in directions_form_set %}
+                                    <div class="form-group">
+                                        {{ form.text }}
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <!-- Category -->
+                                <div class="left instruction-title">Select Category:</div>
+                                <div class="right"><span class="clickable" id="more-category-button">&#10010;</span></div>
+                                <div class="clear-float"></div>
+                                <div id="category-wrapper">
+                                    {{ category_form_set.non_form_errors }}
+                                    {{ category_form_set.management_form }}
+                                    {% for form in category_form_set %}
+                                    <div class="form-group">
+                                        {{ form.title }}
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <button type="submit" class="btn btn-warning" style="cursor:pointer;">Create</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-6 offset-sm-3">
+                                        <div id="cover-image-display" class="hidden" style="height:auto;"></div>
+                                        <div class="form-group">
+                                            <label for="id_cover_image-image">Cover Image:</label>
+                                            {{ cover_image_form.image }}
+                                            {{ cover_image_form.image.errors }}
+                                        </div>
+                                        <input type="hidden" id="cover_image_64" name="cover_image_64">
+                                        <div class="left instruction-title">Add More Images:</div>
+                                        <div class="right"><span class="clickable" id="more-image-button">&#10010;</span></div>
+                                        <div class="clear-float"></div>
+                                        <div id="more-image">
+                                            {{ image_formset.management_form }}
+                                            {% for form in image_formset %}
+                                            {{ form.image }}
+                                            {{ form.image.errors }}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.4.1/croppie.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="{% static 'recipes/scripts/create.js' %}"></script>
+{% endblock %}

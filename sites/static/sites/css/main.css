@@ -1,0 +1,95 @@
+.profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.screen-size {
+    width: 100%;
+    height: 95vh;
+}
+
+.slide-caption {
+    font-size: 400%;
+    font-family: sans-serif;
+}
+
+div.sec-part {
+    background-color: #d48a02;
+    border-bottom: 1px solid;
+    border-bottom-color: chocolate;
+}
+
+div.quote {
+    color: white;
+    display: inline-block;
+    width: 32.26%;
+    padding-left: 5%;
+}
+
+div.head-sec {
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+    display: block;
+    width: 33.33%;
+    border-bottom: 1px solid;
+    border-bottom-color: black;
+    position: relative;
+    left: 33.33%;
+    padding-top: 20px;
+}
+
+.text {
+    color: white;
+    text-align: center;
+}
+
+.user-review {
+    width: 100px;
+    border-radius: 50%;
+}
+
+footer {
+    width: 100%;
+    background-color: #2f2f2f;
+}
+
+div.footer-social {
+    height: 100px;
+    margin-bottom: 30px;
+}
+
+div.footer-copyright {
+    width: 50%;
+    height: 50px;
+    border-top: 2px solid;
+    border-top-color: white;
+    position: relative;
+    left: 25%;
+}
+
+div.footer-copyright p {
+    color: #bdbdbd;
+}
+
+#social-fb,
+#social-tw {
+    padding-right: 10px;
+}
+
+#social-fb:hover {
+    color: #3B5998;
+}
+
+#social-tw:hover {
+    color: #4099FF;
+}
+
+#social-gp:hover {
+    color: #d34836;
+}
+
+.social {
+    position: relative;
+    left: 45%;
+    top: 50%;
+}
