@@ -52,7 +52,6 @@ def get_book_detail(request,book_id):
     try:
         ## get post
         ratedPost = BookRating.objects.filter(book = book.id).order_by('-pub_date')
-        print('\t\t',ratedPost)
         return render(request,'books/book_detail.html',{'book':book,'ratedPost':ratedPost})
     except:
         return render(request,'books/book_detail.html',{'book':book,'ratedPost':None})
@@ -70,7 +69,7 @@ def searching(request):
 
 def searchBook(request,search_key):
     search_key = " ".join(search_key.split('+'))
-    books = Book.objects.filter(book_name__icontains =  search_key)| Book.objects.filter(author__author_name__icontains = search_key)  
+    books = Book.objects.filter(book_name__icontains = search_key)|Book.objects.filter(author__author_name__icontains = search_key)  
     return render(request, 'books/browse_page.html',{'books':books, 'book_found':len(books)})
 
 def searchByGenre(request,search_key):

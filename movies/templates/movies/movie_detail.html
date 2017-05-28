@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}RateReview{% endblock %}
+
+{% block css %}
+    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+       <link rel="stylesheet" type="text/css" href= "{% static "movies/moviedetail.css"%}"/>
+
+{% endblock %}
+
+{% block content %}
+        <div class="container">
+            {% if request.user == book.booked_by %}
+            <div class="row row-set">
+                <div class="col-sm-1">
+                    <div class = "setting">
+                        <form  action = {% url 'books:delete_book' book.id %}>
+                            <button type="submit" class="btn btn-danger" style="cursor: pointer;">Delete Book</button>
+                            
+                        </form>
+                    </div>
+                </div>
+            
+            </div>
+            {% endif %}
+            <div class="row">
+                <div class="info">
+                    <div class="col">
+                        <div class="image">
+                        <img src="{{movie.movie_poster.url}}" style=" width:220px; height: 290px">
+
+
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="detail">
+                        <table class="data-table" id="product-attribute-specs-table">
+                                            <colgroup><col width="25%">
+                                            <col>
+                                            </colgroup><tbody>
+                            <tr class="first odd">
+                                              <th class="label">Name</th>
+                                              <td class="data last">{{movie.movie_name}}</td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <th class="label">Year</th>
+                                                <td class="data last">{{movie.year}}</td>
+                                            </tr>
+                                          <tr class="odd">
+                                              <th class="label">Directed by </th>
+                                              <td class="data last">{{movie.director.director_name}}</td>
+                                          </tr>
+                                          <tr class="odd">
+                                              <th class="label">Product Type</th>
+                                              <td class="data last">BOOK</td>
+                                          </tr>
+                                              <tr class="odd">
+                                                  <th class="label">Created by</th>
+                                                  <td class="data last"><a href = {% url 'accounts:profile' movie.movie_by.username %} style="color:white;">{{ movie.movie_by.username }} </a></td>
+                                              </tr>
+                                              </tbody>
+                                          </table>
+                        </div>  
+                    </div>
+                    <div class="col">
+                         <div class="chart">
+                            <svg width="300" height="250">
+                                <g>
+                                     <ellipse cx="107" cy="128" rx="57" ry="57" stroke="none" stroke-width="0" fill="#007f50"></ellipse>
+                                    <text text-anchor="start" x="72.5" y="131.5" font-family="Arial" font-size="25" stroke="none" stroke-width="0" fill="#ffffff">{{movie.getRating|floatformat:1}}  / 5 </text>
+                                </g>
+                            </svg>
+                        </div>
+                    
+                    
+                    </div>
+                   
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col">
+                     <p class="topic">  Movie Reviews</p>
+                </div>
+            </div>
+                <div class="ment">
+                    <div class="row row1 cmt-each">
+                        {% if request.user.is_authenticated %}
+                        <!-- Input Comment Section -->
+                            <form action = {% url 'movies:create_new_movie_rating' movie.id %} method ="post" enctype='multipart/form-data' >
+                            {% csrf_token %} 
+                        <div class="col rate-zone">
+                            <div class="row">
+                                <div class="col-sm-2 ">
+                                    <h3 class="rate-txt"> Rating:</h3>
+                                </div>
+                                 <div class="col-sm-">
+                                    <div class="stars">
+                                       <input class="star star-5" id="star-5" type="radio" name="star" value="5"/>
+                                        <label class="star star-5" for="star-5"></label>
+                                        <input class="star star-4" id="star-4" type="radio" name="star" value="4"/>
+                                        <label class="star star-4" for="star-4"></label>
+                                        <input class="star star-3" id="star-3" type="radio" name="star" value="3"/>
+                                        <label class="star star-3" for="star-3"></label>
+                                        <input class="star star-2" id="star-2" type="radio" name="star" value="2"/>
+                                        <label class="star star-2" for="star-2"></label>
+                                        <input class="star star-1" id="star-1" type="radio" name="star" value="1"/>
+                                        <label class="star star-1" for="star-1"></label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <button type="submit" class="btn btn-success submit">Submit</button>
+                                </div>
+                                <input type="hidden" name="rated_score" id="rated_score">
+
+                            </div>
+                           <div class="row">
+                               <div class="col-sm-2">
+                                    <h3 class="review-txt">Review: </h3>
+                               </div>
+                               <div class="col">
+                                   <div class="comment">
+                                    <textarea id="myTextarea" placeholder="Comment.." rows="4" cols="50" name = "comment" ></textarea>
+
+                                    </div>
+
+                               </div>
+
+                            </div>
+
+
+                        </div>
+
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                 <!-- Show Comment Section -->
+                {%for rate in ratedPost%}
+                <div class="row cmt-each">
+                    <div class="cmt-box">
+                        <div class="row inrow1">
+                            <div class="col-sm-2">
+                                <div class="profile">
+                                    <cite> <img src="{{ rate.booked_by.image.url }}" class="profile"></cite>  
+                                </div>
+                            </div>
+                             <div class="col-sm-3">
+                                <div class="name">
+                                    <p><a href = {% url 'accounts:profile' rate.booked_by.username %}>{{rate.booked_by.username}}</a></p>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="date">
+                                    <p>{{rate.pub_date}}</p>
+                                </div>
+
+                            </div>
+                             <div class="col-sm-2">
+                                 <div class="rate-score">
+                                    ☆ {{rate.rate}}/5
+                                 </div>
+
+                            </div>
+                        </div>
+                        
+                        <div class="row row2">
+                            <div class="col">
+                                 <div class="cmt-txt">
+                                     {{rate.description}}
+                                </div>
+
+                            </div>
+                       
+                    
+                        </div>
+                    </div>
+                
+                </div>
+                {%endfor%}     
+        </div>
+ 
+        
+        
+  
+    
+ 
+{% endblock %}  
+    
+{% block scripts %}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+       $('input[type="radio"]').on('click', function() {
+            $('#rated_score').val(($(this).val()));
+       });
+    });
+</script>
+{% endblock %}

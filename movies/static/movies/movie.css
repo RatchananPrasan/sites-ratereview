@@ -1,0 +1,127 @@
+
+body{
+     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(bg.jpg);
+        background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    height: 100vh;
+}
+.first-part{
+    max-width: 100%;
+  
+    
+}
+h1{
+    text-align: center;
+    color: #b9c1ff;
+     font-family: "Jack Lane";
+    font-weight: bold;
+    position: relative;
+    bottom: 10px;
+}
+button.btn {
+    height: 40px;
+    margin: 8px;
+    
+}
+h3{
+    text-align: center;
+    font-family: "Jack Lane";
+    color: white;
+}
+.text{
+     position: relative;
+    left: 35.7%;
+}
+.search-inp{
+    text-align: center;
+}
+.sec-part{
+   
+}
+.li2{
+    list-style-type: none;
+    float: left;
+    padding: 10px 20px; 
+  
+    
+}
+img{
+    vertical-align: middle;
+    width: 100%;
+}
+.movie{
+   width: 180px;
+    height: 255px;
+    border: 5px solid;
+    border-color: #70A9A1;
+}
+ul.movie-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+
+}
+
+ul.movie-list li {
+    display: inline-block;
+    position: relative;
+    margin-left: 20px;
+    padding-top: 20px;
+
+}
+
+span.text-content {
+ 
+    color: white;
+    font-weight: 900;
+    cursor: pointer;
+    display: table;
+    font-size: 20px;
+    left: 12%;
+    position: absolute;
+    top: 8%;
+    opacity: 0;
+    width: 170px;
+    height: 245px;
+    -webkit-transition: opacity 500ms;
+    -moz-transition: opacity 500ms;
+    -o-transition: opacity 500ms;
+    transition: opacity 500ms;
+}
+
+span.text-content span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+ul.movie-list li:hover img{
+    opacity: 0.2;
+}
+
+ul.movie-list li:hover span.text-content {
+    opacity: 1;
+}
+.score{
+    text-align: center;
+    padding-top: 5px;
+}
+.name{
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+.detail{
+    color: white;
+    border: 0;
+    background-color: brown;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0.8;
+    border-radius: 20px;
+}
+span.text-content:hover .detail{
+    opacity: 1;
+}

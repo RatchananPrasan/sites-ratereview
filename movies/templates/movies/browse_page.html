@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="{% static "movies/movie.css" %}"/>
+{% endblock %}
+
+{% block content %}
+
+        <div class="first-part">
+            <br>
+            <div class="search">
+                   <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                     <h1>MOVIES:</h1>
+
+                  </li>
+                   <form action = {% url 'movies:searching_for_movie' %}>
+                  <li class="nav-item l2">
+                     <input class="form-control mr-sm-2" type="text" placeholder="Search" name = "search_key">
+
+                  </li>
+                     <button type="submit" class="btn btn-success" style="cursor: pointer;">Search</button>
+                     {% if request.user.is_authenticated %}
+                    <a style="cursor: pointer; " href="{% url 'books:create_book' %}">
+                        <button type="button" class="btn btn-success" style="cursor: pointer;">Create</button></a>
+                    {% endif %}
+                    </form>
+                </ul>
+            
+            </div>
+        <br>
+        
+        
+        </div>
+        <div class="sec-part">
+            <br>
+            <h3>{% if movies_found %}
+                    {% if movies_found > 1 %}
+                        {{movies_found}} Movies Found
+                    {% else %}
+                        {{movies_found}} Movie Found
+                    {% endif %}
+                {% else %}
+                    0 Movie Found               
+                {% endif %}                    
+            </h3>
+            <br>
+            <ul class="movie-list">
+                 {%for movie in movies%}
+                <li class = "li2">
+                    <div class = "movie">
+                        <img src = "{{movie.movie_poster.url}}" style = "width:170px; height:245px;" />
+                        <span class="text-content"><span><i class="fa fa-star-o" aria-hidden="true"></i>
+                        <br>
+                            <div class="score">
+                                {{movie.getRating|floatformat:1}} / 5
+                             </div>
+                             <div class="name">
+                                 <p> {{movie.movie_name}} </p>
+                             </div> 
+                            
+                            <a href={% url 'movies:movie_detail' movie.id%}>
+                             <button type="button" class="detail" >View Details</button><br>
+                                </a>
+                             </span></span>  
+                            
+                    </div>
+                </li>
+                
+                {%endfor%}
+            
+            </ul>
+      
+        </div>
+      
+    
+    
+{% endblock %}
