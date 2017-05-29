@@ -9,7 +9,7 @@
     <div class="row main-container">
         <div class="col">
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-3 text-center">
                     <div class="row row-space">
                         <div class="col">
                             <img class="img-thumbnail" src="{{ recipe.cover_image.url }}">
@@ -21,12 +21,12 @@
                             {% if is_saved %}
                             <form method="post" action="{% url 'recipes:unfavourite' recipe.id %}">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-danger" style="cursor:pointer;">Unfavourite</button>
+                                <button type="submit" class="btn btn-danger btn-block" style="cursor:pointer;">Unfavourite</button>
                             </form>
                             {% else %}
                             <form method="post" action="{% url 'recipes:favourite' recipe.id %}">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-warning" style="cursor:pointer;">Favourite</button>
+                                <button type="submit" class="btn btn-warning btn-block" style="cursor:pointer;">Favourite</button>
                             </form>
                             {% endif %}
                             {% endif %}
@@ -38,7 +38,11 @@
                     <p>&#128202; <strong>Calories:</strong> {{ recipe.calories }} kcal</p>
                     <p>&#128338; <strong>Preparation Time:</strong> {{ recipe.prep_time }} minutes</p>
                     <p>&#127829; <strong>Serving Size:</strong> {{ recipe.serving }}</p>
-                    <p><strong>Categories:</strong> {% for cat in category_list %}<a href="#">{{ cat }}</a> {% endfor %}</p>
+                    <p><strong>Categories:</strong> 
+                        {% for cat in category_list %}
+                        <a href="{% url 'recipes:search' %}?category={{ cat }}">{{ cat }}</a> 
+                        {% endfor %}
+                    </p>
                     <h4>Description:</h4>
                     <p>{{ recipe.description }}</p>
                 </div>
@@ -94,7 +98,7 @@
                     <div class="row">
                         <div class="col-sm-8 offset-sm-2">
                             <h3>Images</h3>
-                            <div id="carouselControls" class="carousel slide" data-ride="carousel">
+                            <div id="carouselControls" class="carousel slide slide-border" data-ride="carousel">
                                 <div class="carousel-inner" role="listbox" style="width:100%;height:500px;">
                                     {% for image in recipe.get_image %} 
                                     {% if forloop.counter == 1 %}
@@ -165,7 +169,8 @@
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <p>Average Rating</p>
+                                    <p style="margin-bottom:0;">Average Rating</p>
+                                    <p>({{ recipe.get_total_rating }} review{{ recipe.get_total_rating|pluralize }})</p>
                                 </div>
                             </div>
                         </div>

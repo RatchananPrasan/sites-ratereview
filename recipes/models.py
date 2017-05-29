@@ -21,6 +21,9 @@ class Recipe(models.Model):
                                   on_delete=models.CASCADE,
                                   related_name = 'recipe_by')
     
+    class Meta:
+        ordering = ['-pub_date']
+    
     def get_rating(self):
         rating = Rating.objects.filter(recipe_id=self.id).aggregate(Avg('rate'))
         rate = rating['rate__avg']
@@ -66,6 +69,10 @@ class Recipe(models.Model):
         result.append((fair_count / total_rating) * 100)
         result.append((poor_count / total_rating) * 100)
         
+        return result
+    
+    def get_total_rating(self):
+        result = Rating.objects.filter(recipe_id=self.id).count()
         return result
     
     

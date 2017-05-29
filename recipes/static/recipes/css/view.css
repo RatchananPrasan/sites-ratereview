@@ -69,3 +69,8 @@ body {
     font-size: 30px;
     color: #f0ad4e;
 }
+
+.slide-border {
+    padding: .25rem;
+    border: 1px solid #ddd;
+}

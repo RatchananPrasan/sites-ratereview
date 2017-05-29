@@ -31,17 +31,25 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'sites:about' %}">About</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'sites:content' %}">Browse</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="browsedropdown" data-toggle="dropdown" style="cursor:pointer;">Browse</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{% url 'recipes:search' %}">Recipe</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Movie</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Book</a>
+                    </div>
                 </li>
             </ul>
             {% if request.user.is_authenticated %}
             <ul class="navbar-nav mr-5">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="profiledropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor:pointer;">
+                    <a class="nav-link dropdown-toggle" id="profiledropdown" data-toggle="dropdown" style="cursor:pointer;">
                         <img class="img-fluid rounded-circle" src="{{ request.user.image.url }}" style="width:32px;height:32px;padding:2px;border:1px solid rgba(0, 0, 0, 0.25);">
-                        {{ request.user.get_username }}</a>
-                    <div class="dropdown-menu" aria-labelledby="profiledropdown">
+                        {{ request.user.get_username }}
+                    </a>
+                    <div class="dropdown-menu">
                         <a class="dropdown-item" href="{% url 'accounts:profile' request.user.get_username %}">Profile</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#" id="logoutLink">Log Out</a>

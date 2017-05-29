@@ -8,3 +8,33 @@ body {
     background-color: white;
     border-radius: 5px;
 }
+
+.rate-icon {
+    font-size: 150%;
+}
+
+.warning-color {
+    color: #f0ad4e;
+}
+
+.follow-img {
+    border-radius: 50%;
+    padding: 2px;
+    border: 1px solid #ddd;
+    width: 50px;
+    height 50px;
+    margin-right: 10px;
+}
+
+.follow-hr {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.follow-name{
+    margin-bottom: 0;
+}
+
+.follow-list {
+    margin-bottom: 15px;
+}

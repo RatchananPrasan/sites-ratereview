@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.forms import formset_factory
 from django.conf import settings
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import RecipeInitialForm, ImageUploadForm, CategoryForm, TextForm, BaseTextFormSet, BaseCategoryFormSet, RatingForm
 from .models import Recipe, Category, Images, FollowList, SaveList, Rating
 from accounts.models import User
@@ -10,8 +11,66 @@ import base64
 
 # Create your views here.
 def recipe_search(request):
-    print(request.GET)
-    return render(request, 'recipes/search.html')
+    data = {}
+    category_list = []
+    for cat in Category.cat_choice:
+        category_list.append(cat[1])
+    
+    data['category_list'] = category_list
+    
+    if request.user.is_authenticated:
+        user_recipe = Recipe.objects.filter(recipe_by=request.user)
+        savelist = SaveList.objects.filter(saved_by=request.user)
+        data['user_recipe'] = user_recipe
+        data['savelist'] = savelist
+        
+        followlist = FollowList.objects.filter(followed_by=request.user)
+        follow_dict = {}
+        for follow_person in followlist:
+            follow_dict[follow_person] = Recipe.objects.filter(recipe_by=follow_person.following)
+        data['follow_dict'] = follow_dict
+    
+    if 'category' in request.GET:
+        cat = request.GET['category']        
+        if cat in category_list:
+            for i in Category.cat_choice:
+                if i[1] == cat:
+                    cat = i[0]
+                    break
+                    
+            recipe_result = Recipe.objects.filter(category__title=cat)
+        else:
+            recipe_result = Recipe.objects.all()
+            
+        data['recipe_result'] = recipe_result
+            
+    if 'keyword' in request.GET:
+        if 'recipe_result' not in data:
+            recipe_result = Recipe.objects.filter(title__icontains=request.GET['keyword'])
+        else:
+            recipe_result = data['recipe_result'].filter(title__icontains=request.GET['keyword'])
+        
+        data['recipe_result'] = recipe_result
+    
+    if 'recipe_result' not in data:
+        data['recipe_result'] = Recipe.objects.all()
+        
+    paginator = Paginator(data['recipe_result'], 10)
+    
+    if 'page' in request.GET:
+        try:
+            result = paginator.page(request.GET['page'])
+        except PageNotAnInteger:
+            result = paginator.page(1)
+        except EmptyPage:
+            result = paginator.page(paginator.num_pages)
+            
+        data['recipe_result'] = result
+        
+    else:
+        data['recipe_result'] = paginator.page(1)
+    
+    return render(request, 'recipes/search.html', data)
 
 
 def recipe_view(request, pk):
