@@ -79,7 +79,7 @@ def searchByGenre(request,search_key):
 
 
 def browseAllBooks(request):
-    books = Book.objects.all()
+    books = Book.objects.all().order_by('-id')
     return render(request, 'books/browse_page.html',{'books':books, 'book_found':len(books)})
 
 

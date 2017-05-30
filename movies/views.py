@@ -105,7 +105,7 @@ def createNewMovieRating(request, movie_id):
 
 
 def browseAllMovies(request):
-    movies = Movie.objects.all()
+    movies = Movie.objects.all().order_by('-id')
     return render(request,'movies/browse_page.html',{'movies':movies,'movies_found':len(movies)})
 
 
