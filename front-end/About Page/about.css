@@ -1,0 +1,35 @@
+.about{
+    text-align: center;
+    background-color: #343c60;
+    color: white;
+    height: 100px;
+}
+.web-name{
+   text-align: center;
+}
+.topic{
+    padding-bottom: 50px;
+    font-family: "Courier New";
+}
+
+.profile{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+}
+.desc{
+    padding-top: 50px;
+    font-family: "Courier New";
+    
+}
+.team{
+    padding-top: 50px;
+    padding-bottom: 20px;
+    font-family: "Courier New";
+    font-weight: 800;
+    text-align: center;
+}
+.name{
+    font-family: "Courier New";
+    font-weight: 600;
+}
