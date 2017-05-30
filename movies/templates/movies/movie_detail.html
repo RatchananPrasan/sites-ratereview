@@ -12,11 +12,11 @@
 
 {% block content %}
         <div class="container">
-            {% if request.user == book.booked_by %}
+            {% if request.user == movie.movie_by %}
             <div class="row row-set">
                 <div class="col-sm-1">
                     <div class = "setting">
-                        <form  action = {% url 'books:delete_book' book.id %}>
+                        <form  action = {% url 'movies:delete_movie' movie.id %}>
                             <button type="submit" class="btn btn-danger" style="cursor: pointer;">Delete Book</button>
                             
                         </form>
@@ -41,24 +41,41 @@
                                             <col>
                                             </colgroup><tbody>
                             <tr class="first odd">
-                                              <th class="label">Name</th>
+                                              <th class="label" width="40%">Name</th>
                                               <td class="data last">{{movie.movie_name}}</td>
                                             </tr>
                                             <tr class="odd">
-                                                <th class="label">Year</th>
+                                                <th class="label" width="40%">Year</th>
                                                 <td class="data last">{{movie.year}}</td>
                                             </tr>
                                           <tr class="odd">
-                                              <th class="label">Directed by </th>
-                                              <td class="data last">{{movie.director.director_name}}</td>
-                                          </tr>
-                                          <tr class="odd">
-                                              <th class="label">Product Type</th>
-                                              <td class="data last">BOOK</td>
+                                              <th class="label" width="40%">Directed by </th>
+                                              <td class="data last"><a href = {% url 'movies:movie_search_by_person' movie.director.director_name %} style="color:white;">
+                                                  {{movie.director.director_name}} 
+                                                  </a></td>
                                           </tr>
                                               <tr class="odd">
-                                                  <th class="label">Created by</th>
+                                                  <th class="label" width="40%">Created by</th>
                                                   <td class="data last"><a href = {% url 'accounts:profile' movie.movie_by.username %} style="color:white;">{{ movie.movie_by.username }} </a></td>
+                                              </tr>
+                                            <tr class="odd">
+                                                  <th class="label" width="40%">Genre</th>
+                                                  <td class="data last">
+                                                    {% for genre in movie.getGenreList %} 
+                                                        <a href = {% url 'movies:movie_search_by_genre' genre %} style="color:white;">
+                                                      {{ genre }} &nbsp;
+                                                      </a>
+                                                {% endfor %}
+                                                      </td>
+                                              </tr>
+                                            <tr class="odd">
+                                                  <th class="label" width="40%">Actor/Actress</th>
+                                                  <td class="data last">
+                                                       {% for actor in movie.getActorList %}
+                                                      <a href = {% url 'movies:movie_search_by_person' actor %} style="color:white;">
+                                                          {{ actor }} <br></a>
+                                                    {% endfor %}
+                                                </td>
                                               </tr>
                                               </tbody>
                                           </table>

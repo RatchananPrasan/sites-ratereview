@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-        <div class="container">
+        <div class="container all">
             {% if request.user == book.booked_by %}
             <div class="row row-set">
                 <div class="col-sm-1">
@@ -39,25 +39,25 @@
                                             <col>
                                             </colgroup><tbody>
                             <tr class="first odd">
-                                              <th class="label">Name</th>
+                                              <th class="label" width="30%">Name</th>
                                               <td class="data last">{{book.book_name}}</td>
                                             </tr>
                                             <tr class="odd">
-                                                <th class="label">Autor</th>
+                                                <th class="label" width="30%">Autor</th>
                                                 <td class="data last"> 
                                                     <a href= {% url 'books:book_search' book.author.author_name %} style = "color:white;"> {{book.author.author_name}} </a></td>
                                             </tr>
                                           <tr class="odd">
-                                              <th class="label">ISBN</th>
+                                              <th class="label" width="30%">ISBN</th>
                                               <td class="data last">{{ book.isbn }}</td>
                                           </tr>
                                           <tr class="odd">
-                                              <th class="label">Genre</th>
+                                              <th class="label" width="30%">Genre</th>
                                               <td class="data last">
                                                   <a href= {% url 'books:search_by_genre' book.genre %} style = "color:white;"> {{book.get_genre_display}}</a></td>
                                           </tr>
                                               <tr class="odd">
-                                                  <th class="label">Created by</th>
+                                                  <th class="label" width="30%">Created by</th>
                                                   <td class="data last"><a href = {% url 'accounts:profile' book.booked_by.username %} style="color:white;">{{ book.booked_by.username }} </a></td>
                                               </tr>
                                               </tbody>
@@ -143,7 +143,7 @@
                         <div class="row inrow1">
                             <div class="col-sm-2">
                                 <div class="profile">
-                                    <cite> <img src="{{ book.booked_by.image.url }}" class="profile"></cite>  
+                                    <cite> <img src="{{ rate.booked_by.image.url }}" class="profile"></cite>  
                                 </div>
                             </div>
                              <div class="col-sm-3">

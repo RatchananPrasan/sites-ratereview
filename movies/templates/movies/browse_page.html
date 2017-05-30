@@ -23,7 +23,7 @@
                   </li>
                      <button type="submit" class="btn btn-success" style="cursor: pointer;">Search</button>
                      {% if request.user.is_authenticated %}
-                    <a style="cursor: pointer; " href="{% url 'books:create_book' %}">
+                    <a style="cursor: pointer; " href="{% url 'movies:create_movie' %}">
                         <button type="button" class="btn btn-success" style="cursor: pointer;">Create</button></a>
                     {% endif %}
                     </form>

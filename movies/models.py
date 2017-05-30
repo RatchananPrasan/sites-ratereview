@@ -25,12 +25,25 @@ class Movie(models.Model):
         if rate == None:
             rate = 0
         return rate
-
+    
+    def getActorList(self):
+        actorList = []
+        actorQuerry = Movie_Actor.objects.filter(movie = self.id)
+        for actor in actorQuerry:
+            actorList.append(actor.actor.actor_name)
+        return actorList
+    
+    def getGenreList(self):
+        genreList = []
+        genreQuerry = Movie_Genre.objects.filter(movie = self.id)
+        for genre in genreQuerry:
+            genreList.append(genre.genre)
+        return genreList
+    
     
 class Movie_Actor(models.Model):
     movie = models.ForeignKey(Movie, on_delete = models.CASCADE, related_name = 'movie_actor')
     actor = models.ForeignKey(Actor, on_delete = models.CASCADE, related_name = 'actor_movie')
-    
     
 class Movie_Genre(models.Model):
     GENRE = (('action','Action'),('adventure','Adventure'),('animation','Animation'),('biography','Biography'),('comedy','Comedy'),('crime','Crime'),('documentary','Documentary'),('drama','Drama'),('family','Family'),('fantasy','Fantasy'),('film-noir','Film-Noir'),('history','History'),('horror','Horror'),('music','Music'),('musical','Musical'),('mystery','Mystery'),('romance','Romance'),('sci-fi','Sci-Fi'),('sport','Sport'),('thriller','Thriller'),('war','War'),('western','Western'))

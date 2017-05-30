@@ -23,7 +23,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-4 offset-sm-4">
-                <form action="{% url 'movies:create_movie'%}" method = "post" enctype='multipart/form-data'>
+                <form action="{% url 'movies:create_movie'%}" method = "post" enctype='multipart/form-data' id="create-form">
                 {% csrf_token %}
                 {% for field in form1 %}
                     <div class="form-group">
@@ -36,8 +36,36 @@
                         </div>
                     </div>
                 {% endfor %}
-              
-                <button type="submit" class="btn btn-success" style="cursor: pointer;">CREATE</button>
+                    <div id="actor-wrapper">
+                        <h3>Actors:</h3>
+                        <p><span class="clickable">&#10010;</span></p>
+                        {% if is_actor_error %}
+                        <p style="color:white;">Insert atleast one actor</p>
+                        {% endif %}
+                        {{ actorforms.non_form_errors }}
+                        {{ actorforms.management_form }}
+                        {% for actor_form in actorforms %}
+                        <div class="form-group">
+                        {{ actor_form.actor_name }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div id="genre-wrapper">
+                        <h3>Genres:</h3>
+                        <p><span class="clickable">&#10010;</span></p>
+                        {% if is_genre_error %}
+                        <p style="color:white;">Select atleast one genre</p>
+                        {% endif %}
+                        {{ genreforms.non_form_erros }}
+                        {{ genreforms.management_form }}
+
+                        {% for genre_form in genreforms %}
+                        <div class="form-group">
+                        {{ genre_form.genre }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                <button type="submit" class="btn btn-success" style="cursor: pointer;margin-top:20px;">CREATE</button>
                 </form>
             </div>
         </div>
