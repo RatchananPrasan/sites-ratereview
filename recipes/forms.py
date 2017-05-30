@@ -8,7 +8,7 @@ class RecipeInitialForm(ModelForm):
         labels = {
             'title' : 'Recipe Name',
             'description' : 'About Recipe',
-            'calories': 'Calories(kcal)',
+            'calories': 'Calories(cal)',
             'prep_time' : 'Preparation Time(in minutes)',
             'serving' : 'Serving Size',
         }
