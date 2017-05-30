@@ -56,7 +56,10 @@ $(document).ready(function() {
     
     $('#profile-post').on('submit', function() {
         $post_form = $(this);
-        
+        $input = $(this).find('textarea');
+        if ($.trim($input.val()) == "") {
+            return false;
+        }
         $.ajax({
             type: $post_form.attr('method'),
             url: $post_form.attr('action'),
