@@ -1,5 +1,66 @@
-{% extends 'base.html' %} {% block title %}RateReview{% endblock %} {% block content %}
+{% extends 'base.html' %} 
+{% block title %}RateReview{% endblock %} 
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href= "{% static  'sites/css/about.css'  %}"/>
+{% endblock %}
+
+{% block content %}
 <div class="container">
-    <h1>About</h1>
-</div>
+            <div class="row align-items-center">
+                <div class="col">
+                    <div class="about">
+                        <h1 class="aboutUs"> About Us</h1>
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="row align-items-center">
+                <div class="col">
+                    <div class="web-name">
+                        <h1 class="topic"> Rate &amp; Review</h1>
+                    </div>
+                
+                </div>
+            
+            
+            </div>
+            <div class="row align-items-center">
+                <div class="col">
+                    <div class="info">
+                        <p class="desc" >Rate & Review is an university project in the Software Engineering Principal of King Mongkut's Institute of Technology Ladkrabang. The website is capable of rate and review topics in the category of "Recipes", "Movies" and "Book". Users can create their own account and start created their own topic. Also rating and reviewing others topic is also allowed. In the further future, If the project succeed, it can be more further expands.
+                        </p>
+                    </div>
+                </div>               
+            </div>
+            
+            <div class="row">
+                <div class="col">
+                    <h2 class="team"> Meet the Founders</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <img src="{% static 'sites/images/koo.jpg' %}" class="profile"/>
+                    <h3 class="name"> Virayut Sandhu</h3>
+                </div>
+                <div class="col">
+                    <img src="{% static 'sites/images/charn.jpg' %}" class="profile"/>
+                    <h3 class="name"> Dhitiwat Jongsuebchoke</h3>
+                </div>
+                <div class="col">
+                    <img src="{% static 'sites/images/first.jpg' %}" class="profile"/>
+                    <h3 class="name"> Phusith Suktrakul</h3>
+                </div>
+            
+            </div>
+            
+        
+        
+        
+        </div>
 {% endblock %}
