@@ -12,7 +12,7 @@
   - manage.py makemigrations
   - manage.py migrate
 - To run the server use the command
-  - manage.py runserver (localhost:8000 is the homepage of the sites)
+  - manage.py runserver
 - To create a superuseraccount run the command
   - manage.py createsuperuser (This account can be used to login to admin page)
 
