@@ -15,4 +15,5 @@ urlpatterns = [
     url(r'^settings/change-profile-pic/$', views.change_profile_pic, name='change_profile_pic'),
     url(r'^message/(?P<pk>[0-9]+)/delete/$', views.delete_message, name='message_delete'),
     url(r'^reply/(?P<pk>[0-9]+)/delete/$', views.delete_reply, name='reply_delete'),
+    url(r'^api/', views.user_list),
 ]

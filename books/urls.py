@@ -15,4 +15,7 @@ urlpatterns = [
     url(r'^deleteBook/(?P<book_id>[0-9]+)/$',views.deleteBook,name = "delete_book"),
     url(r'^searchByGenre/(?P<search_key>.*)$',views.searchByGenre, name = "search_by_genre"),
     url(r'^editBook/(?P<book_id>[0-9]+)/$',views.editBook, name = "edit_book"),
+    url(r'^api/', views.book_list),
+    url(r'^api/', views.author_list),
+    url(r'^api/', views.bookrate_list),
 ]

@@ -15,6 +15,11 @@ urlpatterns = [
     url(r'^searchByGenre/(?P<search_key>.*)$',views.searchMovieByGenre, name = "movie_search_by_genre"),
     url(r'^search/$',views.searching, name = "searching_for_movie"),
     url(r'^deleteBook/(?P<movie_id>[0-9]+)/$',views.deleteMovie,name = "delete_movie"),
-
+    url(r'^api/', views.movie_list),
+    url(r'^api/', views.actor_list),
+    url(r'^api/', views.director_list),
+    url(r'^api/', views.movie_actor_list),
+    url(r'^api/', views.movie_genre_list),
+    url(r'^api/', views.movie_rating_list),
 
 ]

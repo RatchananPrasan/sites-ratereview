@@ -8,7 +8,14 @@ from .models import User, Message, Reply
 from .forms import RegisterForm, MessageForm, ReplyForm, EditProfileForm, ImageUploadForm
 import base64
 import random
+
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import UserSerializer
+from rest_framework import generics
 # Create your views here.
+
 def login_view(request):
     if request.user.is_authenticated:
         return redirect('sites:home')
@@ -181,3 +188,17 @@ def delete_reply(request, pk):
             return render(request, 'accounts/post_reply.html', {'message':m})
     
     return redirect('accounts:profile', r.message.post_to.get_username())
+
+@api_view(['GET', 'POST'])
+def user_list(request):
+    if request.method == "GET":
+        user = User.objects.all()
+        serializer = UserSerializer(user, many=True)
+        return Response(serializer.data)
+
+    elif request.method == "POST":
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

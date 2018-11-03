@@ -9,6 +9,10 @@ from accounts.models import User
 import random
 import base64
 
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import RecipeSerializer
 # Create your views here.
 def recipe_search(request):
     data = {}
@@ -240,3 +244,87 @@ def recipe_create(request):
                                                    'directions_form_set':directions_form_set,
                                                    'ingredients_form_set':ingredients_form_set,
                                                   })
+
+@api_view(['GET', 'POST'])
+def Recipe_list(request):
+    if request.method == "GET":
+        recipe = Recipe.objects.all()
+        serializer = RecipeSerializer(recipe, many=True)
+        return Response(serializer.data)
+
+    elif request.method == "POST":
+        serializer = RecipeSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'POST'])
+def Category_list(request):
+    if request.method == "GET":
+        category = Category.objects.all()
+        serializer = RecipeSerializer(category, many=True)
+        return Response(serializer.data)
+
+    elif request.method == "POST":
+        serializer = RecipeSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'POST'])
+def Rating_list(request):
+    if request.method == "GET":
+        rating = Rating.objects.all()
+        serializer = RecipeSerializer(rating, many=True)
+        return Response(serializer.data)
+
+    elif request.method == "POST":
+        serializer = RecipeSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'POST'])
+def Images_list(request):
+    if request.method == "GET":
+        images = Images.objects.all()
+        serializer = RecipeSerializer(images, many=True)
+        return Response(serializer.data)
+
+    elif request.method == "POST":
+        serializer = RecipeSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'POST'])
+def Follow_List_List(request):
+    if request.method == "GET":
+        followList = FollowList.objects.all()
+        serializer = RecipeSerializer(followList, many=True)
+        return Response(serializer.data)
+
+    elif request.method == "POST":
+        serializer = RecipeSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'POST'])
+def Save_List_List(request):
+    if request.method == "GET":
+        saveList = SaveList.objects.all()
+        serializer = RecipeSerializer(saveList, many=True)
+        return Response(serializer.data)
+
+    elif request.method == "POST":
+        serializer = RecipeSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

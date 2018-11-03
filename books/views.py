@@ -4,6 +4,11 @@ from django.http import HttpResponseRedirect
 from .forms import *
 from .models import *
 from .validateFormatTools import VFBookTool
+
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import BookSerializer
 # Create your views here.
 
 
@@ -138,4 +143,44 @@ def editBook(request,book_id):
     book = Book.objects.get(pk = book_id)
     return render(request, 'books/EditBook.html',{'form':form,'book':book})
 
+@api_view(['GET', 'POST'])
+def book_list(request):
+    if request.method == "GET":
+        book = Book.objects.all()
+        serializer = BookSerializer(book, many=True)
+        return Response(serializer.data)
 
+    elif request.method == "POST":
+        serializer = BookSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'POST'])
+def author_list(request):
+    if request.method == "GET":
+        author = Author.objects.all()
+        serializer = BookSerializer(author, many=True)
+        return Response(serializer.data)
+
+    elif request.method == "POST":
+        serializer = BookSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'POST'])
+def bookrate_list(request):
+    if request.method == "GET":
+        bookrate = BookRating.objects.all()
+        serializer = BookSerializer(bookrate, many=True)
+        return Response(serializer.data)
+
+    elif request.method == "POST":
+        serializer = BookSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

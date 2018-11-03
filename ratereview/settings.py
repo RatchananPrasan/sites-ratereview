@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'books.apps.BooksConfig',
     'recipes.apps.RecipesConfig',
     'movies.apps.MoviesConfig',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [

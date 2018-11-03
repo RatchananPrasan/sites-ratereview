@@ -12,4 +12,11 @@ urlpatterns = [
     url(r'^favourite/(?P<recipe_id>[0-9]+)/$', views.recipe_favourite, name='favourite'),
     url(r'^unfavourite/(?P<recipe_id>[0-9]+)/$', views.recipe_unfavourite, name='unfavourite'),
     url(r'^rate/(?P<recipe_id>[0-9]+)/$', views.recipe_rate, name='rate'),
+    url(r'api',views.Recipe_list),
+    url(r'api',views.Category_list),
+    url(r'api',views.Rating_list),
+    url(r'api',views.Follow_List_List),
+    url(r'api',views.Save_List_List),
+    url(r'api',views.Images_list),
+
 ]

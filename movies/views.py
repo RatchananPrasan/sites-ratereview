@@ -5,6 +5,10 @@ from .forms import *
 from .models import *
 from .validateFormatTools import VFMovieTool
 
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import MovieSerializer
 # Create your views here.
 
 def createNewMovie(request):
@@ -159,3 +163,87 @@ def deleteMovie(request,movie_id):
     movie = Movie.objects.get(pk = movie_id)
     movie.delete()
     return redirect('movies:browse_all_movie')
+
+@api_view(['GET', 'POST'])
+def movie_list(request):
+    if request.method == "GET":
+        movie = Movie.objects.all()
+        serializer = MovieSerializer(movie, many=True)
+        return Response(serializer.data)
+
+    elif request.method == "POST":
+        serializer = MovieSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'POST'])
+def actor_list(request):
+    if request.method == "GET":
+        actor = Actor.objects.all()
+        serializer = MovieSerializer(actor, many=True)
+        return Response(serializer.data)
+
+    elif request.method == "POST":
+        serializer = MovieSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'POST'])
+def director_list(request):
+    if request.method == "GET":
+        director = Director.objects.all()
+        serializer = MovieSerializer(director, many=True)
+        return Response(serializer.data)
+
+    elif request.method == "POST":
+        serializer = MovieSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'POST'])
+def movie_actor_list(request):
+    if request.method == "GET":
+        movie_actor = Movie_Actor.objects.all()
+        serializer = MovieSerializer(movie_actor, many=True)
+        return Response(serializer.data)
+
+    elif request.method == "POST":
+        serializer = MovieSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'POST'])
+def movie_genre_list(request):
+    if request.method == "GET":
+        movie_genre = Movie_Genre.objects.all()
+        serializer = MovieSerializer(movie_genre, many=True)
+        return Response(serializer.data)
+
+    elif request.method == "POST":
+        serializer = MovieSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'POST'])
+def movie_rating_list(request):
+    if request.method == "GET":
+        movie_rating = MovieRating.objects.all()
+        serializer = MovieSerializer(movie_rating, many=True)
+        return Response(serializer.data)
+
+    elif request.method == "POST":
+        serializer = MovieSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
