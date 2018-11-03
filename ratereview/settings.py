@@ -15,11 +15,10 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# SECURITY WARNING: keep the secret key used in production secret!  
 SECRET_KEY = 'ws*--vrurebkhdb3!1z2b*dygm3^e5u8jv+hzgvhli$@h4(8@q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -35,7 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.messages',
+    'django.contrib.messages',  
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'sites.apps.SitesConfig',
@@ -81,12 +80,21 @@ WSGI_APPLICATION = 'ratereview.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'default': {},
+    'primary': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    },
+    'replica1': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db-1.sqlite3'), #change server
+    },
+    'replica2': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db-2.sqlite3'),     #change server
+    },
 }
-
+DATABASE_ROUTERS = ['ratereview.router.PrimaryReplicaRouter']
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
