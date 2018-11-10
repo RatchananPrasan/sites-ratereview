@@ -29,6 +29,9 @@ class testing():
         email.send_keys(e2)
         s=self.driver.find_element_by_css_selector('body > div > div > div > form > button')
         s.click()
+        self.driver.close()
+
+        
     def createRecipe(self):
         chrome_options = Options()
         self.driver = webdriver.Chrome(chrome_options=chrome_options)
@@ -61,6 +64,9 @@ class testing():
         category.select_by_index(3)
         submit=self.driver.find_element_by_css_selector('#create-form > div > div:nth-child(1) > button')
         submit.click()
+        self.driver.close()
+
+        
     def searchmovie(self):
         chrome_options = Options()
         self.driver = webdriver.Chrome(chrome_options=chrome_options)
@@ -78,6 +84,9 @@ class testing():
         time.sleep(1)
         search=self.driver.find_element_by_css_selector('  body > div.first-part > div > ul > form > button')
         search.click()
+        self.driver.close()
+
+        
     def privateMessage(self):
         chrome_options = Options()
         self.driver = webdriver.Chrome(chrome_options=chrome_options)
@@ -111,6 +120,9 @@ class testing():
         text1.send_keys("I am fine.")
         reply_button=self.driver.find_element_by_css_selector('#message-output > div:nth-child(1) > div > div > div.col-sm-11 > div:nth-child(1) > div > div.reply-box > form > button')
         reply_button.click()
+        self.driver.close()
+
+        
     def review_book(self):
         chrome_options = Options()
         self.driver = webdriver.Chrome(chrome_options=chrome_options)
@@ -131,6 +143,9 @@ class testing():
         review_text.send_keys("Very fun!")
         submit=self.driver.find_element_by_css_selector('body > div > div.ment > div > form > div > div:nth-child(1) > div.col > button')
         submit.click()
+        self.driver.close()
+
+        
     def create_book_and_delete_book(self):
         chrome_options = Options()
         self.driver = webdriver.Chrome(chrome_options=chrome_options)
@@ -161,6 +176,9 @@ class testing():
         time.sleep(2)
         delete_button=self.driver.find_element_by_css_selector('        body > div > div.row.row-set > div > div > form > button')
         delete_button.click()
+        self.driver.close()
+
+        
         
 
                 
@@ -168,9 +186,30 @@ class testing():
         
 if __name__=="__main__":
     a=testing()
-##    a.signup()
-##    a.createRecipe()
-    a.searchmovie()
-##    a.privateMessage()
-##    a.review_book()
-##    a.create_book_and_delete_book()
+    a.signup()
+    print("Test 1")
+    
+    b=testing()
+    b.createRecipe()
+    print("Test 2")
+    
+    c=testing()
+    c.searchmovie()
+    print("Test 3")
+    
+    d=testing()
+    d.privateMessage()
+    print("Test 4")
+    
+    e=testing()
+    e.review_book()
+    print("Test 5")
+    
+    f=testing()
+    f.create_book_and_delete_book()
+    print("Test 6")
+
+
+
+    
+    
