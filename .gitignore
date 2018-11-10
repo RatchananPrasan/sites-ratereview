@@ -1,5 +1,4 @@
 # Byte-compiled / optimized / DLL files
-__pycache__/
 *.py[cod]
 *$py.class
 
@@ -52,8 +51,6 @@ coverage.xml
 
 # Django stuff:
 *.log
-migrations/
-db.sqlite3
 
 # Flask stuff:
 instance/

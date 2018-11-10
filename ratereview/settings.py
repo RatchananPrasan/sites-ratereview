@@ -80,21 +80,25 @@ WSGI_APPLICATION = 'ratereview.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    'default': {},
-    'primary': {
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     },
-    'replica1': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db-1.sqlite3'), #change server
-    },
-    'replica2': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db-2.sqlite3'),     #change server
-    },
 }
-DATABASE_ROUTERS = ['ratereview.router.PrimaryReplicaRouter']
+#   'primary': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#       'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    },
+#    'replica1': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db-1.sqlite3'), #change server
+#    },
+#    'replica2': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db-2.sqlite3'),     #change server
+#    },
+
+#DATABASE_ROUTERS = ['ratereview.router.PrimaryReplicaRouter']
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
